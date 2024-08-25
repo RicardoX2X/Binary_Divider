@@ -35,6 +35,7 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 use ieee.numeric_std.all;
 
 entity Divisor4Bits is
+    GENERIC(n: INTEGER := 3);
     Port (
         A: in std_logic_vector(3 downto 0);
         B : in std_logic_vector(3 downto 0);
@@ -71,14 +72,27 @@ architecture Behavioral of Divisor4Bits is
 
 begin
     process(A, B)
+
+    VARIABLE temp1: std_logic_vector(3 downto 0);
+    VARIABLE temp2: std_logic_vector(3 downto 0);
+
+    
     begin
+        temp1 := a;
+        temp2 := b;
         if B = "0000" then
             Quociente <= "0000";
             Resto <= "0000";
             Erro <= '1';  -- Divisão por zero
         else
-            --Quociente <= A / B;
-            --Resto <= A mod B;
+            FOR i IN n DOWNTO 0 LOOP
+               IF(temp1 >= temp2 * 2**i) THEN
+                  Quociente(i) <= '1';
+                  temp1 := temp1 - temp2 * 2**I;
+               ELSE Quociente(i) <= '0';
+               END IF;
+            END LOOP;
+            Resto <= temp1;
             Erro <= '0';  -- Divisão válida
         end if;
     end process;
