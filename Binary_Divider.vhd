@@ -82,12 +82,14 @@ begin
             Resto <= "0000";
             Erro <= '1';  -- Divisão por zero
         else
-            IF (unsigned(temp1) >= (unsigned(temp2) sll i)) THEN
-               Quociente(i) <= '1';
-               temp1 := std_logic_vector(unsigned(temp1) - (unsigned(temp2) sll i));
-            ELSE
-                Quociente(i) <= '0';
-            END IF;
+            FOR i IN n DOWNTO 0 LOOP
+                IF (unsigned(temp1) >= (unsigned(temp2) sll i)) THEN
+                   Quociente(i) <= '1';
+                   temp1 := std_logic_vector(unsigned(temp1) - (unsigned(temp2) sll i));
+                ELSE
+                    Quociente(i) <= '0';
+                END IF;
+            END LOOP;
             Resto <= temp1;
             Erro <= '0';  -- Divisão válida
         end if;
