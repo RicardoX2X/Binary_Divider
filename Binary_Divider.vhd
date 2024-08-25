@@ -85,13 +85,12 @@ begin
             Resto <= "0000";
             Erro <= '1';  -- Divisão por zero
         else
-            FOR i IN n DOWNTO 0 LOOP
-               IF(temp1 >= temp2 * 2**i) THEN
-                  Quociente(i) <= '1';
-                  temp1 := temp1 - temp2 * 2**I;
-               ELSE Quociente(i) <= '0';
-               END IF;
-            END LOOP;
+            IF (unsigned(temp1) >= (unsigned(temp2) sll i)) THEN
+               Quociente <= '1';
+               temp1 := std_logic_vector(unsigned(temp1) - (unsigned(temp2) sll i));
+            ELSE
+                Quociente <= '0';
+            END IF;
             Resto <= temp1;
             Erro <= '0';  -- Divisão válida
         end if;
