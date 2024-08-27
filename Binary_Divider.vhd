@@ -1,19 +1,19 @@
 library ieee;
 use ieee.std_logic_1164.all;
-use IEEE.STD_LOGIC_ARITH.ALL;
-use IEEE.STD_LOGIC_UNSIGNED.ALL;
 use ieee.numeric_std.all;
 
 entity Binary_Divider is
     GENERIC(n: INTEGER := 3);
     Port (
-        A: in std_logic_vector(3 downto 0);
-        B : in std_logic_vector(3 downto 0);
+        SW: in std_logic_vector(9 downto 0);
         HEX0 : out std_logic_vector(6 downto 0);
         HEX1 : out std_logic_vector(6 downto 0);
         HEX2 : out std_logic_vector(6 downto 0);
         HEX3 : out std_logic_vector(6 downto 0);
-        Erro : out std_logic
+		  HEX4 : out std_logic_vector(6 downto 0);
+		  HEX5 : out std_logic_vector(6 downto 0);
+		  KEY: in std_logic_vector(1 downto 0);
+        Erro : BUFFER std_logic
     );
 end Binary_Divider;
 
@@ -68,47 +68,70 @@ architecture Behavioral of Binary_Divider is
         end function;
 
 begin
-    process(A, B)
+    process(SW, KEY)
 
-    VARIABLE temp1: std_logic_vector(3 downto 0);
-    VARIABLE temp2: std_logic_vector(3 downto 0);
+    VARIABLE temp1: std_logic_vector(7 downto 0);
+    VARIABLE temp2: std_logic_vector(7 downto 0);
+	 VARIABLE state: std_logic;
 
     
     begin
-        temp1 := a;
-        temp2 := b;
-        if B = "0000" then
-            Quociente <= "0000";
-            Resto <= "0000";
-            Erro <= '1';  -- Divisão por zero
-        else
-            FOR i IN n DOWNTO 0 LOOP
-                IF (unsigned(temp1) >= (unsigned(temp2) sll i)) THEN
-                   Quociente(i) <= '1';
-                   temp1 := std_logic_vector(unsigned(temp1) - (unsigned(temp2) sll i));
-                ELSE
-                    Quociente(i) <= '0';
-                END IF;
-            END LOOP;
-            Resto <= temp1;
-            Erro <= '0';  -- Divisão válida
-        end if;
+	 
+	     IF KEY(1) = '0' THEN
+		  state := '1';
+		  END IF;
+		  
+		  IF KEY(0) = '0' THEN
+		  state := '0';
+		  END IF;
+		  
+		  temp1 := "0000" & SW(9 DOWNTO 6);
+		  temp2 := "0000" & SW(3 DOWNTO 0);
+		  IF state = '1' THEN
+			HEX0 <= BinTo7Seg(temp2(3 downto 0));                  -- Dígito das unidades do quociente
+			HEX1 <= BinTo7SegDec(temp2(3 downto 0));
+			HEX2 <= "1111111";  -- Display apagado (ou pode ser adaptado para outro dígito)
+			HEX3 <= "1111111";
+			-- Exibir resto nos displays HEX2 e HEX3
+			HEX4 <= BinTo7Seg(temp1(3 downto 0));      -- Dígito das unidades do resto
+			HEX5 <= BinTo7SegDec(temp1(3 downto 0)); 
+		  
+		  ELSE
+			  if temp2 = "00000000" then
+					Quociente <= "0000";
+					Resto <= "0000";
+					Erro <= '1';  -- Divisão por zero
+			  else
+					FOR i IN N downto 0 LOOP
+						 IF (unsigned(temp1) >= (unsigned(temp2) sll i)) THEN
+							 Quociente(i) <= '1';
+							 temp1 := std_logic_vector(unsigned(temp1) - (unsigned(temp2) sll i));
+						 ELSE
+							  Quociente(i) <= '0';
+						 END IF;
+					END LOOP;
+					Resto <= temp1(3 downto 0);
+					Erro <= '0';  -- Divisão válida
+			  end if;
+			  IF Erro = '1' THEN
+				HEX0 <= "1000000";                -- Dígito das unidades do quociente
+				HEX1 <= "0101111";            -- Display apagado (ou pode ser adaptado para outro dígito)
+
+				-- Exibir resto nos displays HEX2 e HEX3
+				HEX2 <= "0101111";      -- Dígito das unidades do resto
+				HEX3 <= "0000110";
+				HEX4 <= "1111111";
+				HEX5 <= "1111111";
+			  ELSE
+				-- Exibir quociente nos displays HEX0 e HEX1
+				HEX0 <= BinTo7Seg(Resto);                  -- Dígito das unidades do quociente
+				HEX1 <= BinTo7SegDec(Resto);
+				HEX2 <= "0101111";  -- Display apagado (ou pode ser adaptado para outro dígito)
+				HEX3 <= "1111111";
+				-- Exibir resto nos displays HEX2 e HEX3
+				HEX4 <= BinTo7Seg(Quociente);      -- Dígito das unidades do resto
+				HEX5 <= BinTo7SegDec(Quociente);                         -- Display apagado (ou pode ser adaptado para outro dígito)
+			  END IF;   
+			END IF;
     end process;
-   
-    if(Erro == '1')
-       HEX0 <= "0000001";                -- Dígito das unidades do quociente
-       HEX1 <= "1001111"            -- Display apagado (ou pode ser adaptado para outro dígito)
-
-       -- Exibir resto nos displays HEX2 e HEX3
-       HEX2 <= "1001111"      -- Dígito das unidades do resto
-       HEX3 <= "0110000";
-    ELSE
-       -- Exibir quociente nos displays HEX0 e HEX1
-       HEX0 <= BinTo7Seg(Quociente(3 downto 0));                  -- Dígito das unidades do quociente
-       HEX1 <= BinTo7SegDec(Quociente(3 downto 0));             -- Display apagado (ou pode ser adaptado para outro dígito)
-
-       -- Exibir resto nos displays HEX2 e HEX3
-       HEX2 <= BinTo7Seg(Resto(3 downto 0));      -- Dígito das unidades do resto
-       HEX3 <= BinTo7SegDec(Resto(3 downto 0));                         -- Display apagado (ou pode ser adaptado para outro dígito)
-    END IF    
 end Behavioral;
