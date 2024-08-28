@@ -1,0 +1,95 @@
+m255
+K4
+z2
+!s11e vcom 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/fernandes.joao/Desktop/Binary_Divider-feature-binary-manipulation/simulation/modelsim
+Ebinary_divider
+Z1 w1724801532
+Z2 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z4 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 0
+R0
+Z5 8C:/Users/fernandes.joao/Desktop/Binary_Divider-feature-binary-manipulation/binary_divider.vhd
+Z6 FC:/Users/fernandes.joao/Desktop/Binary_Divider-feature-binary-manipulation/binary_divider.vhd
+l0
+L5 1
+VgT7=JbAzJUoO^NJI8zK`M1
+!s100 V6`n`:3b6h60V:^1iYN;j2
+Z7 OV;C;2020.1;71
+31
+Z8 !s110 1724804046
+!i10b 1
+Z9 !s108 1724804046.000000
+Z10 !s90 -reportprogress|300|-93|-work|work|C:/Users/fernandes.joao/Desktop/Binary_Divider-feature-binary-manipulation/binary_divider.vhd|
+Z11 !s107 C:/Users/fernandes.joao/Desktop/Binary_Divider-feature-binary-manipulation/binary_divider.vhd|
+!i113 1
+Z12 o-93 -work work
+Z13 tExplicit 1 CvgOpt 0
+Abehavioral
+R2
+R3
+R4
+DEx4 work 14 binary_divider 0 22 gT7=JbAzJUoO^NJI8zK`M1
+!i122 0
+l70
+L20 118
+VX8OEd>GL4MmE>@nb8Ed0@2
+!s100 5zB2AT7QeobI]VgJbC6CJ1
+R7
+31
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Ebinary_divider_vhd_tst
+Z14 w1724804010
+R3
+R4
+!i122 1
+R0
+Z15 8C:/Users/fernandes.joao/Desktop/Binary_Divider-feature-binary-manipulation/simulation/modelsim/Binary_Divider.vht
+Z16 FC:/Users/fernandes.joao/Desktop/Binary_Divider-feature-binary-manipulation/simulation/modelsim/Binary_Divider.vht
+l0
+L31 1
+VePYY=lUdZ5?dU`Pkd1lVE1
+!s100 ZWaXmGj351o@ODYU:fEWP3
+R7
+32
+Z17 !s110 1724804076
+!i10b 1
+Z18 !s108 1724804076.000000
+Z19 !s90 -reportprogress|300|-work|work|C:/Users/fernandes.joao/Desktop/Binary_Divider-feature-binary-manipulation/simulation/modelsim/Binary_Divider.vht|
+!s107 C:/Users/fernandes.joao/Desktop/Binary_Divider-feature-binary-manipulation/simulation/modelsim/Binary_Divider.vht|
+!i113 1
+Z20 o-work work
+R13
+Abinary_divider_arch
+R3
+R4
+DEx4 work 22 binary_divider_vhd_tst 0 22 ePYY=lUdZ5?dU`Pkd1lVE1
+!i122 1
+l58
+L33 85
+VoeULI>RG<W3nOUiGSezgX2
+!s100 zSoa43^S[k_2I_1L9]VE:1
+R7
+32
+R17
+!i10b 1
+R18
+R19
+Z21 !s107 C:/Users/fernandes.joao/Desktop/Binary_Divider-feature-binary-manipulation/simulation/modelsim/Binary_Divider.vht|
+!i113 1
+R20
+R13
