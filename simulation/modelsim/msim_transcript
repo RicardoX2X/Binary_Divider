@@ -1,0 +1,55 @@
+# Reading pref.tcl
+# do Binary_Divider_run_msim_rtl_vhdl.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work rtl_work 
+# Copying C:/intelFPGA_lite/20.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vcom -93 -work work {C:/Users/fernandes.joao/Desktop/Binary_Divider-feature-binary-manipulation/binary_divider.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 21:14:06 on Aug 27,2024
+# vcom -reportprogress 300 -93 -work work C:/Users/fernandes.joao/Desktop/Binary_Divider-feature-binary-manipulation/binary_divider.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity Binary_Divider
+# -- Compiling architecture Behavioral of Binary_Divider
+# End time: 21:14:06 on Aug 27,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+vcom -reportprogress 300 -work work C:/Users/fernandes.joao/Desktop/Binary_Divider-feature-binary-manipulation/simulation/modelsim/Binary_Divider.vht
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 21:14:36 on Aug 27,2024
+# vcom -reportprogress 300 -work work C:/Users/fernandes.joao/Desktop/Binary_Divider-feature-binary-manipulation/simulation/modelsim/Binary_Divider.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity Binary_Divider_vhd_tst
+# -- Compiling architecture Binary_Divider_arch of Binary_Divider_vhd_tst
+# End time: 21:14:36 on Aug 27,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vsim work.binary_divider_vhd_tst
+# vsim work.binary_divider_vhd_tst 
+# Start time: 21:14:42 on Aug 27,2024
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.binary_divider_vhd_tst(binary_divider_arch)
+# Loading ieee.numeric_std(body)
+# Loading work.binary_divider(behavioral)
+add wave -position insertpoint sim:/binary_divider_vhd_tst/*
+run -all
+# ** Warning: NUMERIC_STD.">=": metavalue detected, returning FALSE
+#    Time: 0 ps  Iteration: 0  Instance: /binary_divider_vhd_tst/i1
+# ** Warning: NUMERIC_STD.">=": metavalue detected, returning FALSE
+#    Time: 0 ps  Iteration: 0  Instance: /binary_divider_vhd_tst/i1
+# ** Warning: NUMERIC_STD.">=": metavalue detected, returning FALSE
+#    Time: 0 ps  Iteration: 0  Instance: /binary_divider_vhd_tst/i1
+# ** Warning: NUMERIC_STD.">=": metavalue detected, returning FALSE
+#    Time: 0 ps  Iteration: 0  Instance: /binary_divider_vhd_tst/i1
