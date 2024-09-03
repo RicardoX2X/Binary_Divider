@@ -73,36 +73,36 @@ init : PROCESS
 -- variable declarations                                     
 BEGIN                                                        
         KEY(1) <= '1';
-        -- Primeira simulação
-        SW <= "1011000011"; -- Dividendo = 11 -- Divisor = 3
+        -- 1° simulação
+        SW <= "1011000011"; -- Dividendo = 11 -- Divisor = 3 -- Resultado esperado: 03 r 02
         WAIT FOR 200 ns;
 
-        -- Segunda simulação
-        SW <= "1111000010"; -- Dividendo = 15 -- Divisor = 2
+        -- 2° simulação
+        SW <= "1111000010"; -- Dividendo = 15 -- Divisor = 2 -- Resultado esperado: 07 r 01 
         WAIT FOR 200 ns;
 
-        -- Terceira simulação
-        SW <= "1101000101"; -- Dividendo = 13 -- Divisor = 5
+        -- 3° simulação
+        SW <= "1101000101"; -- Dividendo = 13 -- Divisor = 5 -- Resultado esperado: 02 r 03
         WAIT FOR 200 ns;
 		  
-		  -- Terceira simulação
-        SW <= "0101001101"; -- Dividendo = 5 -- Divisor = 13
+	 -- 4° simulação
+        SW <= "0101001101"; -- Dividendo = 5 -- Divisor = 13 -- Resultado esperado: 00 r 5
         WAIT FOR 200 ns;
 
-        -- Simulação de divisão por zero
-        SW <= "1001000000"; -- Dividendo = 9 -- Divisor = 0
+        -- 5° Simulação - divisão por zero
+        SW <= "1001000000"; -- Dividendo = 9 -- Divisor = 0 -- Resultado esperado: Erro
         WAIT FOR 200 ns;
 		  
-		  -- Simulação de divisão por zero
-        SW <= "0000000000"; -- Dividendo = 0 -- Divisor = 0
+	-- 6° Simulação - divisão por zero
+        SW <= "0000000000"; -- Dividendo = 0 -- Divisor = 0 -- Resultado esperado: Erro
         WAIT FOR 200 ns;
 		  
-		  -- Simulação de divisão por zero
-        SW <= "1001001001"; -- Dividendo = 9 -- Divisor = 9
+	-- 7° Simulação
+        SW <= "1001001001"; -- Dividendo = 9 -- Divisor = 9 -- Resultado esperado: 01 r 00
         WAIT FOR 200 ns;
 		  
-		  -- Simulação de divisão por zero
-        SW <= "0000001001"; -- Dividendo = 0 -- Divisor = 9
+	-- 8° Simulação
+        SW <= "0000001001"; -- Dividendo = 0 -- Divisor = 9-- Resultado esperado: 00 r 00
         WAIT FOR 200 ns;                      
 WAIT;                                                       
 END PROCESS init;                                           
